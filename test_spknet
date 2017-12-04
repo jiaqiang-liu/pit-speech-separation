@@ -1,0 +1,1 @@
+python ./local/prepare_spknet_data.py --input_list=tmp/lists/cv.lst --output_dir=data/tfrecords/spknet/cv --spk_list=tmp/lists/cv_spk

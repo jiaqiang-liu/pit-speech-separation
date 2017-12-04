@@ -7,6 +7,7 @@
 #      We define the tf records format for our task, please see the codes for the details
 #   3. Traing & Test model: Tensorflow
 
+<<<<<<< HEAD
 step=1
 
 lists_dir=./lists/ #lists_dir is used to store some necessary files lists
@@ -21,11 +22,35 @@ tt_batch_size=1
 input_size=129
 output_size=129
 rnn_size=400
+=======
+
+step=1
+
+lists_dir=./lists/ #lists_dir is used to store some necessary files lists
+mkdir -p $lists_dir
+num_threads=12
+
+tfrecords_dir=data/tfrecords/
+gpu_id='1'
+TF_CPP_MIN_LOG_LEVEL=1
+rnn_num_layers=3
+tr_batch_size=32
+
+tt_batch_size=1
+input_size=129
+output_size=129
+
+rnn_size=496
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
 keep_prob=0.8
 learning_rate=0.0005
 halving_factor=0.7
 decode=0
 model_type=BLSTM
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
 prefix=StandPsmPIT
 assignment=def
 name=${prefix}_${model_type}_${rnn_num_layers}_${rnn_size}
@@ -37,8 +62,14 @@ resume_training=false
 #          matlab_feats_extraction/extract_czt_fft_feats.m  accordng to your config;
 
 if [ $step -le 0 ]; then
+<<<<<<< HEAD
     for x in cv tt; do
         python -u local/gen_tfreords.py --gender_list local/wsj0-train-spkrinfo.txt data/wav/wav8k/min/$x/ lists/${x}_wav.lst data/tfrecords/${x}_psm/ &
+=======
+    for x in tr cv tt; do
+        python -u local/gen_tfreords.py --gender_list local/wsj0-train-spkrinfo.txt data/wav/wav8k/min/$x/ lists/${x}_wav.lst data/tfrecords/${x}_psm/ &
+
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
     done
     wait
 fi
@@ -55,6 +86,10 @@ if [ $step -le 1 ]; then
     for x in tr tt cv; do
         find $tfrecords_dir/${x}_psm/ -iname "*.tfrecords" > $lists_dir/${x}_tf.lst
     done
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
     tr_cmd="python -u  run_lstm.py \
     --lists_dir=$lists_dir  --rnn_num_layers=$rnn_num_layers --batch_size=$batch_size --rnn_size=$rnn_size \
     --decode=$decode --learning_rate=$learning_rate --save_dir=$save_dir --data_dir=$data_dir --keep_prob=$keep_prob \

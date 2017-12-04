@@ -90,8 +90,11 @@ def gen_feats(wav_name):
     part_name = os.path.splitext(wav_name)[0]
     tfrecords_name = tfdir + '/' + part_name + '.tfrecords'
     print(tfrecords_name)
+<<<<<<< HEAD
     if wav_name == '20nc010j_1.6145_01io031e_-1.6145.wav':
         print 1
+=======
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
     with tf.python_io.TFRecordWriter(tfrecords_name) as writer:
         tf.logging.info(
             "Writing utterance %s" %tfrecords_name)

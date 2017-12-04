@@ -103,8 +103,12 @@ def decode():
            for i in range(0, FLAGS.batch_size): 
                 tffilename = tfrecords_lst[i+processed]
                 (_, name)=os.path.split(tffilename)
+<<<<<<< HEAD
                 (uttid, _) = os.path.splitext(name)
                 (partname, _) = os.path.splitext(uttid)
+=======
+                (partname, _) = os.path.splitext(name)
+>>>>>>> 2c5cb25b7da41e5d2fd79049efa501780730b375
                 wav_name1 = data_dir +'/' + partname + '_1.wav'
                 wav_name2 = data_dir +'/' + partname + '_2.wav'
                 wav1 = istft(spec1[i,0:lengths[i],:], size=256, shift=128)
@@ -137,7 +141,7 @@ def train_one_epoch(sess, coord, tr_model, tr_num_batches):
         _, loss = sess.run([tr_model.train_op, tr_model.loss])
         tr_loss += loss
 
-        if (batch+1) % 1000 == 0:
+        if (batch+1) % 50 == 0:
             lr = sess.run(tr_model.lr)
             print("MINIBATCH %d: TRAIN AVG.LOSS %f, "
                   "(learning rate %e)" % (
